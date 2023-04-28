@@ -1,6 +1,6 @@
 from bark.api import text_to_semantic, save_as_prompt, semantic_to_waveform
 from config import logger
-
+import os
 
 def generate_prompt(text, filename):
     """
@@ -17,7 +17,7 @@ def generate_prompt(text, filename):
         semantic_tokens=semantic, output_full=True
     )
     try:
-        save_as_prompt(f"prompts/{filename}.npz", semantic_prompt)
+        save_as_prompt(os.path.join("/prompt", filename), semantic_prompt)
         logger.info(f"-----PROMPT GENERATED SUCCESSFULLY WITH FILE: {filename}-----")
     except AssertionError as err:
         logger.error("An error occurred while saving npz file", str(err))
