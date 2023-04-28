@@ -1,0 +1,16 @@
+version: '3.5'
+
+services:
+  bark-api:
+    build: .
+    ports: 
+      - "8000:8000"
+    networks: 
+      - bark-network
+    volumes:
+      - ./:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+
+networks:
+  bark-network:
